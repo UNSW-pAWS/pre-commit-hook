@@ -15,21 +15,6 @@ else:
     commit_hash = ''
 
 print "prepare-commit-msg: File: %s\nType: %s\nHash: %s" % (commit_msg_filepath, commit_type, commit_hash)
-
-# Figure out which branch we're on
-branch = check_output(['git', 'symbolic-ref', '--short', 'HEAD']).strip()
-print "prepare-commit-msg: On branch '%s'" % branch
-
-# Populate the commit message with the issue #, if there is one
-if branch.startswith('issue-'):
-    print "prepare-commit-msg: Oh hey, it's an issue branch."
-    result = re.match('issue-(.*)', branch)
-    issue_number = result.group(1)
-
-    with open(commit_msg_filepath, 'r+') as f:
-        content = f.read()
-        f.seek(0, 0)
-        f.write("ISSUE-%s %s" % (issue_number, content))
         
         
 #!/bin/sh
