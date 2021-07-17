@@ -5,7 +5,7 @@ from subprocess import check_output
 
 # Collect the parameters
 commit_msg_filepath = sys.argv[1]
-if len(sys.argv) > 2:
+if len(sys.argv) > 2: 
     commit_type = sys.argv[2]
 else:
     commit_type = ''
