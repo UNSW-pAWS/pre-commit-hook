@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import sys, os, re    
+import sys, os, re       
 from subprocess import check_output
 
 # Collect the parameters
