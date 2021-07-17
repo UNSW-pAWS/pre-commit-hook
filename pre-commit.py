@@ -30,6 +30,7 @@ if branch.startswith('issue-'):
         content = f.read()
         f.seek(0, 0)
         f.write("ISSUE-%s %s" % (issue_number, content))
+
 #!/bin/sh
 #
 # An example hook script to verify what is about to be committed.
