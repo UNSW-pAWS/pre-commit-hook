@@ -24,6 +24,8 @@ file_to_commit = file_to_commit.strip()
 file_to_commit = file_to_commit.split(" ")
 
 for i in file_to_commit:
+    if "D\t" in i.strip():
+        continue
     if "package.json" in i.strip():
         if os.stat(i.strip()).st_size == 0:
             print("WARNING:\tYour file {} is empty. You may want to check that you did not make a mistake".format(i.strip()))
