@@ -2,7 +2,7 @@
 
 1. head to root of your folder type ```npm init``` and fill in the information
 2. type ```git init``` to initialise a git repo
-3. head to package.json and enter the following into scripts ```"preinstall": "git clone .... && bash setup.sh"```
+3. head to package.json and enter the following into scripts ```"preinstall": "git clone .... && chmod +x setup.sh && bash setup.sh"```
 
 # FOR DEVELOPER USE ON LOCAL ENVIROMENT
 

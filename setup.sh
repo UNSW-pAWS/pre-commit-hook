@@ -4,7 +4,6 @@
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	# if ,git exsist
     if [[ -d ".git" ]]; then
-        echo "Directory \".git\" exists."
         cp pre-commit .git/hooks/
         chmod +x .git/hooks/pre-commit
     # if .git does not exsist
@@ -16,7 +15,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # if ,git exsist
     if [[ -d ".git" ]]; then
-        echo "Directory \".git\" exists."
         cp pre-commit .git/hooks/
         chmod +x .git/hooks/pre-commit
     # if .git does not exsist
@@ -28,7 +26,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "cygwin" ]]; then
     # if ,git exsist
     if [[ -d ".git" ]]; then
-        echo "Directory \".git\" exists."
         cp pre-commit .git/hooks/
         chmod +x .git/hooks/pre-commit
     # if .git does not exsist
@@ -40,7 +37,6 @@ elif [[ "$OSTYPE" == "cygwin" ]]; then
 elif [[ "$OSTYPE" == "msys" ]]; then
     # if ,git exsist
     if [[ -d ".git" ]]; then
-        echo "Directory \".git\" exists."
         cp pre-commit .git/hooks/
         chmod +x .git/hooks/pre-commit
     # if .git does not exsist
@@ -52,7 +48,6 @@ elif [[ "$OSTYPE" == "msys" ]]; then
 elif [[ "$OSTYPE" == "win32" ]]; then
     # if ,git exsist
     if [[ -d ".git" ]]; then
-        echo "Directory \".git\" exists."
         cp pre-commit .git\hooks\
         chmod +x .git\hooks\pre-commit
     # if .git does not exsist

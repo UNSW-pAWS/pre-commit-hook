@@ -2,6 +2,19 @@
 
 import sys, os, re ,json , subprocess, requests
 from subprocess import check_output, run
+import queue
+    
+def task(location, work_queue):
+    with requests.Session() as session:
+        while not work_queue.empty():
+            package = work_queue.get()
+            r = session.post('http://127.0.0.1:5000/threat/search',json={"package_manager_type" : "npm","package_list" : [package],"level": 0})
+            yield
+            if r.status_code == 200:
+                r_content = r.json()
+                for h in r_content:
+                    if len(r_content[h]) != 0:
+                        print("The package {} in your {} is vulnerable. Please visit our website at http://www.google.com for more information".format(h,location))
 
 result = run(
         ["git", "rev-parse", "HEAD"],
@@ -34,23 +47,37 @@ for i in file_to_commit:
             try:
                 data = json.load(f)
                 if "dependencies" in data:
+                    work_queue = queue.Queue()
                     package_list = list(data["dependencies"].keys())
+                    for package in package_list:
+                        work_queue.put(package)
+                    tasks = [task("dependencies",work_queue) for _ in range(0, max(1,int(len(package_list)/2)))]
                     print("Scanning your dependencies. Please hold on tight")
-                    r = requests.post('http://127.0.0.1:5000/threat/search',json={"package_manager_type" : "npm","package_list" : package_list,"level": 0})
-                    if r.status_code == 200:
-                        r_content = r.json()
-                        for h in r_content:
-                            if len(r_content[h]) != 0:
-                                print("The package {} in your dependencies is vulnerable. Please visit our website at http://www.google.com for more information".format(h))
+                    done = False
+                    while not done:
+                        for t in tasks:
+                            try:
+                                next(t)
+                            except StopIteration:
+                                tasks.remove(t)
+                            if len(tasks) == 0:
+                                done = True
                 if "devDependencies" in data:
+                    work_queue = queue.Queue()
                     package_list = list(data["devDependencies"].keys())
+                    for package in package_list:
+                        work_queue.put(package)
+                    tasks = [task("devDependencies",work_queue) for _ in range(0, max(1,int(len(package_list)/2)))]
                     print("Scanning your devdependencies. Please hold on tight")
-                    r = requests.post('http://127.0.0.1:5000/threat/search',json={"package_manager_type" : "npm","package_list" : package_list,"level": 0})
-                    if r.status_code == 200:
-                        r_content = r.json()
-                        for h in r_content:
-                            if len(r_content[h]) != 0:
-                                print("The package {} in your dependencies is vulnerable. Please visit our website at http://www.google.com for more information".format(h))
+                    done = False
+                    while not done:
+                        for t in tasks:
+                            try:
+                                next(t)
+                            except StopIteration:
+                                tasks.remove(t)
+                            if len(tasks) == 0:
+                                done = True
                 f.close()
             except:
                 print("WARNING:\tYour file {} is not readable as a json file. Please check that you did not make a mistake".format(i.strip()))
