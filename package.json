@@ -45,8 +45,7 @@
 		"typescript": "^4.3.2",
 		"vscode-test": "^1.5.2",
 		"ts-loader": "^9.2.2",
-		"webpack": "^5.38.1",
-		"webpack-cli": "^4.7.0"
+		"webpack": "^5.38.1"
 	},
 	"dependencies": {
 		"@types/node-fetch": "^2.5.11",
