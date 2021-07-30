@@ -4,7 +4,7 @@
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	# if ,git exsist
     if [[ -d ".git" ]]; then
-        cp pre-commit .git/hooks/
+        cp ./pre-commit-hook/pre-commit .git/hooks/
         chmod +x .git/hooks/pre-commit
     # if .git does not exsist
     else
@@ -15,7 +15,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # if ,git exsist
     if [[ -d ".git" ]]; then
-        cp pre-commit .git/hooks/
+        cp ./pre-commit-hook/pre-commit .git/hooks/
         chmod +x .git/hooks/pre-commit
     # if .git does not exsist
     else
@@ -26,7 +26,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "cygwin" ]]; then
     # if ,git exsist
     if [[ -d ".git" ]]; then
-        cp pre-commit .git/hooks/
+        cp ./pre-commit-hook/pre-commit .git/hooks/
         chmod +x .git/hooks/pre-commit
     # if .git does not exsist
     else
@@ -37,7 +37,7 @@ elif [[ "$OSTYPE" == "cygwin" ]]; then
 elif [[ "$OSTYPE" == "msys" ]]; then
     # if ,git exsist
     if [[ -d ".git" ]]; then
-        cp pre-commit .git/hooks/
+        cp ./pre-commit-hook/pre-commit .git/hooks/
         chmod +x .git/hooks/pre-commit
     # if .git does not exsist
     else
@@ -48,7 +48,7 @@ elif [[ "$OSTYPE" == "msys" ]]; then
 elif [[ "$OSTYPE" == "win32" ]]; then
     # if ,git exsist
     if [[ -d ".git" ]]; then
-        cp pre-commit .git\hooks\
+        cp .\pre-commit-hook\pre-commit .git\hooks\
         chmod +x .git\hooks\pre-commit
     # if .git does not exsist
     else
