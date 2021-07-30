@@ -3,18 +3,24 @@
 import sys, os, re ,json , subprocess, requests
 from subprocess import check_output, run
 import queue
-    
+from json.decoder import JSONDecodeError
+
+exit_status = 0
+
 def task(location, work_queue):
+    global exit_status
     with requests.Session() as session:
         while not work_queue.empty():
             package = work_queue.get()
-            r = session.post('http://127.0.0.1:5000/threat/search',json={"package_manager_type" : "npm","package_list" : [package],"level": 0})
+            r = session.post('http://dependency.eba-suunxfcc.ap-southeast-2.elasticbeanstalk.com/threat/search',json={"package_manager_type" : "npm","package_list" : [package],"level": 0, "severity": ["CRITICAL"], "date": "None"})
             yield
             if r.status_code == 200:
                 r_content = r.json()
                 for h in r_content:
-                    if len(r_content[h]) != 0:
+                    if len(r_content[h][1]) != 0:
                         print("The package {} in your {} is vulnerable. Please visit our website at http://www.google.com for more information".format(h,location))
+                        exit_status = 1
+
 
 result = run(
         ["git", "rev-parse", "HEAD"],
@@ -79,9 +85,10 @@ for i in file_to_commit:
                             if len(tasks) == 0:
                                 done = True
                 f.close()
-            except:
+                if (exit_status == 1):
+                    print("You have some files with critical vulnerbilities, please solve those before commiting again.")
+            except JSONDecodeError:
                 print("WARNING:\tYour file {} is not readable as a json file. Please check that you did not make a mistake".format(i.strip()))
                 f.close()
-                exit(1)
-
-exit(1)
+                exit_status =1
+exit(exit_status)
