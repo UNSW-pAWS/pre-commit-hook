@@ -29,11 +29,13 @@ and ensure the backend located at https://github.com/UNSW-pAWS/webapp-backend is
 npm init
 ``` 
 and fill in the information
+
 2. type 
 ```
 git init
 ``` 
 to initialise a git repo
+
 3. head to package.json and enter the following into scripts (assuming all the developers are using linux)
 ```
 "preinstall": "git clone https://github.com/UNSW-pAWS/pre-commit-hook.git && chmod +x ./pre-commit-hook/setup.sh && bash ./pre-commit-hook/setup.sh"
@@ -42,6 +44,7 @@ to initialise a git repo
 # For developer use on a local environment
 
 1. git clone your project repo
+
 2. run 
 ```
 npm i
