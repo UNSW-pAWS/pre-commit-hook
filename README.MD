@@ -52,3 +52,14 @@ npm i
 (preinstall script will run and setup your pre-commit hook on developer's local enviroment)
 
 # Change proceedures
+
+The original package is able to work as it use pyinstaller to make pre-commit.py into an executable with all the dependency needed. As the change version of the file had not been compiled by pyinstaller we will have to give it a virtual enviroment to work within. Therefore, the following steps need to be undertaken.
+
+1. `python3 -m venv [environment-name]`
+2. `source [environment-name]/bin/activate`
+3. `pip install -r requirements.txt`
+4. `git init` if you did not have a git repo
+5. `cp pre-commit.py .git/hooks/pre-commit`
+6. `chmod +x .git/hooks/pre-commit`
+
+Now you could create your package.json and test our product :)
