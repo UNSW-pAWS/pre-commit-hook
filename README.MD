@@ -17,7 +17,7 @@ An automated pre-commit hook which prompts and prevents developers from includin
 # Table of Contents
 1. [Notes](#Notes)
 2. [Original proceedures](#Original-proceedures)
-    1. [Setup as project manager](#How-to-set-up-your-environment-or-project-repo-(as-a-project-manager))
+    1. [Setup as project manager](#How-to-set-up-your-environment-or-project-repo-(-as-a-project-manager-))
     2. [Setup as a developer](#For-developer-use-on-a-local-environment)
 3. [Change proceedures](#Change-proceedures)
 
@@ -33,7 +33,7 @@ and ensure the backend located at https://github.com/UNSW-pAWS/webapp-backend is
 - If the api have not been changed please proceed to the section [Original proceedures](#Original-proceedures).
 - If the api have been changed please proceeed to the section [Change proceedures](#Change-proceedures).
 # Original proceedures.
-## How to set up your environment or project repo (as a project manager)
+## How to set up your environment or project repo ( as a project manager )
 
 1. head to root of your folder type 
 ```
