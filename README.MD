@@ -14,11 +14,11 @@ An automated pre-commit hook which prompts and prevents developers from includin
 
 <br />
 
-## Table of Contents
+# Table of Contents
 1. [Notes](#Notes)
 2. [Original proceedures](#Original-proceedures)
-  1. [Setup as project manager](#How-to-set-up-your-environment-or-project-repo-(as-a-project-manager))
-  2. [Setup as a developer](#For-developer-use-on-a-local-environment)
+    1. [Setup as project manager](#How-to-set-up-your-environment-or-project-repo-(as-a-project-manager))
+    2. [Setup as a developer](#For-developer-use-on-a-local-environment)
 3. [Change proceedures](#Change-proceedures)
 
 <br />
